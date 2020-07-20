@@ -775,7 +775,7 @@ plot_confusion_matrix(pipe['clf'], X_test, y_test, normalize='true')
 ![png](output_68_1.png)
 
 
-# Train LR on the balanced data
+## Train LR on the balanced data
 
 
 ```python
@@ -827,6 +827,25 @@ plot_confusion_matrix(pipe['clf'], X_test, y_test, normalize='true')
 
 
 ![png](output_72_1.png)
+
+
+### Plot vessel detection prediction using LR model
+
+
+```python
+for name, group in data.groupby('id'):
+    fig, ax1 = plt.subplots(1, 1, figsize=(10, 8), dpi=150)
+    ax1.imshow(
+        pipe['clf'].predict(
+            group.filter(regex='^h|(ap_var)')
+        ).reshape((480,720))
+    )
+    ax1.set_axis_off()
+    break
+```
+
+
+![png](output_74_0.png)
 
 
 ## Now train PCA + RF on the balanced data
@@ -883,7 +902,7 @@ plot_confusion_matrix(pipe['clf'], pipe['pca'].transform(X_test), y_test, normal
 
 
 
-![png](output_76_1.png)
+![png](output_78_1.png)
 
 
 
@@ -911,7 +930,7 @@ plot_confusion_matrix(pipe['clf'], pipe['pca'].transform(X_test), y_test, normal
 
 
 
-![png](output_78_1.png)
+![png](output_80_1.png)
 
 
 
@@ -927,7 +946,7 @@ plot_roc_curve(pipe['clf'], pipe['pca'].transform(X_test), y_test)
 
 
 
-![png](output_79_1.png)
+![png](output_81_1.png)
 
 
 ### Plot vessel detection prediction
@@ -948,7 +967,7 @@ for name, group in data.groupby('id'):
 ```
 
 
-![png](output_81_0.png)
+![png](output_83_0.png)
 
 
 
@@ -967,7 +986,7 @@ for name, group in data.groupby('id'):
 ```
 
 
-![png](output_82_0.png)
+![png](output_84_0.png)
 
 
 ## Try KNN
@@ -1024,7 +1043,7 @@ plot_confusion_matrix(pipe['clf'], pipe['pca'].transform(X_test), y_test, normal
 
 
 
-![png](output_87_1.png)
+![png](output_89_1.png)
 
 
 
@@ -1040,7 +1059,7 @@ plot_roc_curve(pipe['clf'], pipe['pca'].transform(X_test), y_test)
 
 
 
-![png](output_88_1.png)
+![png](output_90_1.png)
 
 
 # Compare model performance on the vessel detection
@@ -1407,7 +1426,7 @@ plot_confusion_matrix(clf, X_test, y_test)
 
 
 
-![png](output_110_1.png)
+![png](output_112_1.png)
 
 
 
@@ -1563,7 +1582,7 @@ plot_confusion_matrix(pipe['clf'], pipe['pca'].transform(X_test), y_test)
 
 
 
-![png](output_123_1.png)
+![png](output_125_1.png)
 
 
 # One vs all classifier
@@ -1616,7 +1635,7 @@ ax.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Chance', alpha=.
 
 
 
-![png](output_128_1.png)
+![png](output_130_1.png)
 
 
 # Resample
@@ -1747,7 +1766,7 @@ plot_confusion_matrix(pipe['clf'], pipe['pca'].transform(X_test), y_test)
 
 
 
-![png](output_142_1.png)
+![png](output_144_1.png)
 
 
 # Fit on balanced data
@@ -1789,7 +1808,7 @@ ax.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Chance', alpha=.
 
 
 
-![png](output_145_1.png)
+![png](output_147_1.png)
 
 
 # Cross Validation
